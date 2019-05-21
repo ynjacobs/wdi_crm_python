@@ -2,6 +2,7 @@ from peewee import SqliteDatabase, Model, CharField, TextField
 
 db = SqliteDatabase('crm.db')
 
+
 class Contact(Model):
   first_name = CharField()
   last_name = CharField()
@@ -23,8 +24,11 @@ class Contact(Model):
 #     self.id = Contact.next_id
 #     Contact.next_id += 1
 
-#   def __repr__(self):
-#     return '{} {} {} {}'.format(self.first_name, self.last_name,self.email, self.note)
+  def __repr__(self):
+    return '{} {} {} {}'.format(self.first_name, self.last_name,self.email, self.note)
+
+  def __str__(self):
+    return '{} {} {} {}'.format(self.first_name, self.last_name,self.email, self.note)
 
 #   @classmethod
 #   def create(cls,first_name, last_name, email, note):
@@ -96,7 +100,6 @@ class Contact(Model):
 #   def delete_all(cls):
 #     """This method should delete all of the contacts"""
 #     del cls.contacts[0 : len(cls.contacts)]
-
 
   def full_name(self):
     """Returns the full (first and last) name of the contact"""

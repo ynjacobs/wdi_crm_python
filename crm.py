@@ -61,35 +61,53 @@ class CRM:
   def modify_existing_contact(cls):
     print('Enter ID: ')
     id = input()
-    contact = Contact.get(id = input())
+    contact = Contact.get_by_id(id)
     print(contact)
     print('please enter an attribute to change')
     n_attribute = input()
     print('please enter a new value')
     n_value = input()
-    contact.update(n_attribute, n_value)
-    return contact.update
+    setattr(contact, n_attribute, n_value)
+    contact.save()
+    return contact
     
     
 
   def delete_contact(self):
     print('Please enter ID of contact to delete: ')
     id = input()
-    contact = Contact.get(id= int)
-    contact.delete()
+    contact = Contact.get_by_id(id)
+    print('this is id',id)
+    contact.delete_instance()
   
   
   def display_all_contacts(self):
-    Contact.all()
+    for contact in Contact.select():
+      print(contact.full_name())
   
   def search_by_attribute(self):
     print('Which attribute would you like to search by?: ')
     attribute = input()
     print('Which value would you like to search by?: ')
     value = input()
-    show_contact = Contact.find_by(attribute, value)
-    print(show_contact)
+    # show_contact = Contact.get()
+    # print(show_contact)
+    contact = None
+
+    if attribute == 'first_name':
+      contact = Contact.select().where(Contact.first_name == value)
+    elif attribute == "last_name":
+      contact = Contact.select().where(last_name = value)
+    elif attribute == "email":
+      contact = Contact.select.where(email = value)
+    elif attribute == "note":
+      contact = Contact.select.where(note = value)
+    elif attribute == "id":
+      contact = Contact.select.where(id = value) 
+    for c in contact:
+      print(c)
     
+
 
 a_crm_app = CRM()
 a_crm_app.main_menu()
