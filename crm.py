@@ -97,13 +97,13 @@ class CRM:
     if attribute == 'first_name':
       contact = Contact.select().where(Contact.first_name == value)
     elif attribute == "last_name":
-      contact = Contact.select().where(last_name = value)
+      contact = Contact.select().where(Contact.last_name == value)
     elif attribute == "email":
-      contact = Contact.select.where(email = value)
+      contact = Contact.select().where(Contact.email == value)
     elif attribute == "note":
-      contact = Contact.select.where(note = value)
+      contact = Contact.select().where(Contact.note == value)
     elif attribute == "id":
-      contact = Contact.select.where(id = value) 
+      contact = Contact.select().where(Contact.id == value) 
     for c in contact:
       print(c)
     
